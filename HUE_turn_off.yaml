@@ -1,0 +1,20 @@
+alias: knapp turn off
+description: ""
+triggers:
+  - device_id: e6bfb4a48eb1f4652e4fe0eec3f66c45
+    domain: zha
+    type: remote_button_long_press
+    subtype: button
+    trigger: device
+conditions: []
+actions:
+  - action: light.turn_off
+    target:
+      area_id: gabriels_rum
+    data: {}
+  - action: input_number.set_value
+    target:
+      entity_id: input_number.hue_scene_index
+    data:
+      value: 9
+mode: single
