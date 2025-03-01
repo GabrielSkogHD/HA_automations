@@ -1,0 +1,106 @@
+alias: Cycle Hue Scenes
+description: ""
+triggers:
+  - device_id: e6bfb4a48eb1f4652e4fe0eec3f66c45
+    domain: zha
+    type: remote_button_short_press
+    subtype: button
+    trigger: device
+conditions: []
+actions:
+  - target:
+      entity_id: input_number.hue_scene_index
+    action: input_number.increment
+    data: {}
+  - choose:
+      - conditions:
+          - condition: numeric_state
+            entity_id: input_number.hue_scene_index
+            above: 7
+        sequence:
+          - target:
+              entity_id: input_number.hue_scene_index
+            data:
+              value: 0
+            action: input_number.set_value
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_number.hue_scene_index
+            state: "0.0"
+        sequence:
+          - target:
+              entity_id: scene.gabriels_rum_arctic_aurora
+            action: hue.activate_scene
+            data: {}
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_number.hue_scene_index
+            state: "1.0"
+        sequence:
+          - action: hue.activate_scene
+            data: {}
+            target:
+              entity_id: scene.gabriels_rum_chill_green
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_number.hue_scene_index
+            state: "2.0"
+        sequence:
+          - action: hue.activate_scene
+            data: {}
+            target:
+              entity_id: scene.gabriels_rum_asus
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_number.hue_scene_index
+            state: "3.0"
+        sequence:
+          - action: hue.activate_scene
+            data: {}
+            target:
+              entity_id: scene.gabriels_rum_concentrate
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_number.hue_scene_index
+            state: "4.0"
+        sequence:
+          - action: hue.activate_scene
+            data: {}
+            target:
+              entity_id: scene.gabriels_rum_dimmed
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_number.hue_scene_index
+            state: "5.0"
+        sequence:
+          - action: hue.activate_scene
+            data: {}
+            target:
+              entity_id: scene.gabriels_rum_relax
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_number.hue_scene_index
+            state: "6.0"
+        sequence:
+          - action: hue.activate_scene
+            data: {}
+            target:
+              entity_id: scene.gabriels_rum_tv_asus
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_number.hue_scene_index
+            state: "7.0"
+        sequence:
+          - action: hue.activate_scene
+            data: {}
+            target:
+              entity_id: scene.gabriels_rum_tyrell
+mode: single
